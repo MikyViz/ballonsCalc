@@ -1,5 +1,5 @@
     <script setup>
-import { ref, reactive, computed, defineProps, defineEmits } from 'vue'
+import { ref, reactive, computed, defineEmits } from 'vue'
 const selectedCategory = ref(null)
 const selectedSubcategory = ref(null)
 const selectedType = ref(null)
@@ -156,11 +156,12 @@ const addNewMenu = () => {
   }
 }
 emit('update-menu', selectedMenus)
-const addNewMenuSub = () => {
-  if (!selectedSubcategoryTypes.value) {
-    addNewMenu()
-  }
-}
+
+// const addNewMenuSub = () => {
+//   if (!selectedSubcategoryTypes.value) {
+//     addNewMenu()
+//   }
+// }
 
 selectedType.value = null
 </script>

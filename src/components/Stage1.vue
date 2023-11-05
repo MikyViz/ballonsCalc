@@ -1,5 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineEmits, watch } from 'vue'
+
+const emit = defineEmits(['deviation-percentage', 'styles-num'])
+
 
 const imgUrl = ref('https://i.pinimg.com/564x/a0/af/fa/a0affa452658c0766686f75dcbfb745f.jpg')
 const imageRef = ref(null)
@@ -9,7 +12,16 @@ const onFileChange = (e) => {
   imgUrl.value = URL.createObjectURL(file)
 }
 
-const selectedPercent = ref(10)
+const selectedPercent = ref(10);
+const stylesNum = ref(0);
+
+watch(() => selectedPercent.value, (newVal) => {
+  emit('deviation-percentage', newVal);
+});
+
+watch(() => stylesNum.value, (newVal) => {
+  emit('styles-num', newVal);
+});
 </script>
     
 <template>
@@ -20,11 +32,11 @@ const selectedPercent = ref(10)
     <h2>שלב 1 פרטים</h2>
     <form action="" method="get">
       <input type="text" name="" id="" placeholder="שם העיצוב" />
-      <input type="text" name="" id="" placeholder="כמות" />
+      <input type="text" name="" id="" v-model="stylesNum" placeholder="כמות" />
       <input type="file" accept="image/*" @change="onFileChange"/>
     </form>
     <div class="percent-slider">
-      <label for="percentSlider">אחוז סתייה</label>
+      <label for="percentSlider">אחוז סטייה</label>
       <input type="range" id="percentSlider" min="0" max="100" step="1" v-model="selectedPercent" />
       <div id="selectedPercent">{{ selectedPercent }}%</div>
     </div>

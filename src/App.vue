@@ -7,10 +7,12 @@ import Stage3 from './components/Stage3.vue'
 import Stage4 from './components/Stage4.vue'
 import commonSum from './components/commonSum.vue'
 
-const MathMenu = ref(null)
-const WorkMenu = ref(null)
-const GenMenu = ref(null)
-const discountPercent = ref(0)
+const MathMenu = ref(null);
+const WorkMenu = ref(null);
+const GenMenu = ref(null);
+const discountPercent = ref(0);
+const deviationPercentage = ref(10);
+const stylesNum = ref(null);
 
 const updateMatherialMenu = (newMenu) => {
   MathMenu.value = newMenu
@@ -21,17 +23,23 @@ const updateWorkMenu = (newMenu) => {
 const updateGeneralCostsMenu = (newMenu) => {
   GenMenu.value = newMenu
 }
+const updateDeviationPercentage = (newPercentage) => {
+  deviationPercentage.value = newPercentage
+}
+const updateStylesNum = (newStylesNum) => {
+  stylesNum.value = newStylesNum
+}
 </script>
 
 <template>
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
-    <Stage1 />
+    <Stage1  @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum"/>
     <Stage2 @update-menu="updateMatherialMenu" />
     <Stage3 @update-menu="updateWorkMenu" />
     <Stage4 @update-menu="updateGeneralCostsMenu" />
-    <commonSum :MathMenu="MathMenu" :WorkMenu="WorkMenu" :discountPercent="discountPercent" />
-    <commonSum :MathMenu="MathMenu" :WorkMenu="WorkMenu" :GenMenu="GenMenu" :discountPercent="discountPercent" />
+    <commonSum :MathMenu="MathMenu" :WorkMenu="WorkMenu" :discountPercent="discountPercent" :deviationPercentage="deviationPercentage" :summaryCalc="false" />
+    <commonSum :MathMenu="MathMenu" :WorkMenu="WorkMenu" :GenMenu="GenMenu" :discountPercent="discountPercent" :deviationPercentage="deviationPercentage" :stylesNum="stylesNum" :summaryCalc="true" />
 
     <div class="discount-slider">
       <label for="discountSlider">אחוז הנחה</label>

@@ -5,7 +5,10 @@ const props = defineProps({
   MathMenu: Array,
   WorkMenu: Array,
   GenMenu: Array,
-  discountPercent: Number
+  discountPercent: Number,
+  deviationPercentage: Number,
+  stylesNum: Number,
+  summaryCalc: Boolean
 })
 const sumPrice = computed(() => {
   let sum = 0
@@ -16,16 +19,28 @@ const sumPrice = computed(() => {
     for (let i = 0; i < props.MathMenu.length; i++) {
       sum += props.MathMenu[i].price * props.MathMenu[i].quantity
     }
+    if(props.deviationPercentage){
+      sum += sum*(props.deviationPercentage/100)
+    }
   }
   if (props.WorkMenu) {
     for (let i = 0; i < props.WorkMenu.length; i++) {
-      Worksum += props.WorkMenu[i].price * props.WorkMenu[i].quantity //Умножение часов работы на их стоимость
+      Worksum += props.WorkMenu[i].price * props.WorkMenu[i].quantity ;
     }
   }
   if (props.GenMenu) {
     for (let i = 0; i < props.GenMenu.length; i++) {
-      sum += props.GenMenu[i].price * props.GenMenu[i].quantity
+      if (props.GenMenu[i].type === 'זמן עבודה כללי') {
+        sum += props.GenMenu[i].price * props.GenMenu[i].quantity;
+      } else {
+        sum += (props.GenMenu[i].price * props.GenMenu[i].quantity) + ((props.GenMenu[i].price * props.GenMenu[i].quantity)*(props.deviationPercentage/100))
+      }
+      
     }
+  }
+  if (props.stylesNum){
+    sum = sum*props.stylesNum;
+    Worksum = Worksum*props.stylesNum;
   }
   sum += Worksum
   profitInPrcnt = (Worksum / sum) * 100
@@ -43,7 +58,7 @@ const sumPrice = computed(() => {
     <h2> {{`חלון סיכום ${props.GenMenu ? " " : "לא"} כולל עלויות כלליות`}} </h2>
     <div class="container">
       <div class="general-sum">
-        {{ `סך הכל ליחידה :₪${sumPrice.sum}` }}
+        {{ ` סך הכל ${props.GenMenu ? " " : "ליחידה"} :₪${sumPrice.sum}` }}
       </div>
       <div class="other-profits">
         <div>
