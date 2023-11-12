@@ -1,5 +1,5 @@
     <script setup>
-import { ref, reactive, computed, defineEmits } from 'vue'
+import { ref, reactive, computed } from 'vue'
 const selectedCategory = ref(null)
 const selectedSubcategory = ref(null)
 const selectedType = ref(null)
@@ -17,42 +17,57 @@ const filters = reactive([
       {
         name: 'בלוני לטקס',
         type: [
-          `5"`,
-          `9"/10"`,
-          `11"/12"`,
-          `16"`,
-          `18"/19"`,
-          `24"`,
-          `3"/36"`,
-          `160`,
-          `260`,
-          `350`,
-          `646`,
-          `לינק 6"`,
-          `לינק 12"`,
-          `לטקס שונות/מיוחדים`
+          { name: `5"` },
+          { name: `9"/10"` },
+          { name: `11"/12"` },
+          { name: `16"` },
+          { name: `18"/19"` },
+          { name: `24"` },
+          { name: `3"/36"` },
+          { name: `160` },
+          { name: `260` },
+          { name: `350` },
+          { name: `646` },
+          { name: `לינק 6"` },
+          { name: `לינק 12"` },
+          { name: `לטקס שונות/מיוחדים` }
         ]
       },
       {
         name: 'בלוני מיילר',
         type: [
-          `4"`,
-          `7"-9"`,
-          `14"-16"`,
-          `18"-20"`,
-          `22"-24"`,
-          `30"-32"`,
-          `34"-36"`,
-          `38"-40"`,
-          ` '+50"`
+          { name: `4"` },
+          { name: `7"-9"` },
+          { name: `14"-16"` },
+          { name: `18"-22"` },
+          { name: `28"-29"` },
+          { name: `30"-32"` },
+          { name: `34"-36"` },
+          { name: `38"-40"` },
+          { name: ` '+40"` },
+          { name: `שונות` }
         ]
       },
-      { name: `אקווה\בובו`, type: [`4"`, `14"`, `18"/20"`, `22"/24"`, `36"`] },
+      {
+        name: `אקווה\בובו`,
+        type: [
+          { name: `4"` },
+          { name: `14"` },
+          { name: `18"/20"` },
+          { name: `22"/24"` },
+          { name: `36"` }
+        ]
+      },
       {
         name: 'באבל',
-        type: [`שקוף 20"`, `שקוף 24"`, `דקו באבל "20/"24`, `סינגל באבל "20/"22`, `דאבל באבל`]
+        type: [
+          { name: `שקוף דקו 20"` },
+          { name: `שקוף דקו 24"` },
+          { name: `סינגל באבל "22` },
+          { name: `דאבל באבל` }
+        ]
       },
-      { name: 'אורבז', type: [`מיני`, `רגיל`, `ג'אמבו`] }
+      { name: 'אורבז', type: [{ name: `מיני` }, { name: `רגיל` }, { name: `ג'אמבו` }] }
     ]
   },
   {
@@ -60,52 +75,97 @@ const filters = reactive([
     subCategory: [
       {
         name: 'בלוני לטקס',
-        type: [`9"/10"`, `11"/12"`, `16"`, `18"/19"`, `24"`, `3"/36"`, `לינק 12"`]
+        type: [
+          { name: `9"`, ballonsInCube: 143 },
+          { name: `11"`, ballonsInCube: 66 },
+          { name: `16"`, ballonsInCube: 23 },
+          { name: `18"/19"`, ballonsInCube: 17 },
+          { name: `24"`, ballonsInCube: 7 },
+          { name: `3"/36"`, ballonsInCube: 4 },
+          { name: `לינק 12"`, ballonsInCube: 60 }
+        ]
       },
       {
         name: 'בלוני מיילר',
-        type: [`14"-16"`, `18"-20"`, `22"-24"`, `30"-32"`, `34"-36"`, `38"-40"`, ` '+50"`]
+        type: [
+          { name: `18"`, ballonsInCube: 71 },
+          { name: `20"-22"`, ballonsInCube: 50 },
+          { name: `28"-29"`, ballonsInCube: 19 },
+          { name: `30"-32"`, ballonsInCube: 17 },
+          { name: `34"-36"`, ballonsInCube: 16 },
+          { name: `38"-40"`, ballonsInCube: 15 },
+          { name: ` '+40"`, ballonsInCube: 13 }
+        ]
       },
-      { name: `אקווה\ובוב`, type: [`14"`, `18"/20"`, `22"/24"`, `30"-32"`, `36"`] },
+      {
+        name: `אקווה\ובוב`,
+        type: [
+          { name: `14"`, ballonsInCube: 110 },
+          { name: `18"/20"`, ballonsInCube: 50 },
+          { name: `22"/24"`, ballonsInCube: 25 },
+          { name: `28"`, ballonsInCube: 6 },
+          { name: `36"`, ballonsInCube: 4 }
+        ]
+      },
       {
         name: 'באבל',
-        type: [`שקוף 20"`, `שקוף 24"`, `דקו באבל 20/24"`, `סינגל באבל 20"/"22"`, `דאבל באבל`]
+        type: [
+          { name: `שקוף דקו 20"`, ballonsInCube: 50 },
+          { name: `שקוף דקו 24"`, ballonsInCube: 23 },
+          { name: `סינגל באבל "22"`, ballonsInCube: 37 },
+          { name: `דאבל באבל`, ballonsInCube: 29 }
+        ]
       },
-      { name: 'אורבז', type: [`רגיל`, `ג'אמבו`] }
+      {
+        name: 'אורבז',
+        type: [
+          { name: `רגיל`, ballonsInCube: 32 },
+          { name: `ג'אמבו`, ballonsInCube: 11 }
+        ]
+      }
     ]
   },
   {
     category: 'ציוד',
     subCategory: [
-      { name: 'דבקים', type: [`בלון בונד`, `סטרצ'י`, `גלו גוטס`, `חבקים`, `דבק אחר`] },
-      { name: `בדים\םסרטי`, type: [`בד טול`, `סרט סטן`, `סרט מתנה`] },
+      {
+        name: 'דבקים',
+        type: [
+          { name: `בלון בונד` },
+          { name: `סטרצ'י` },
+          { name: `גלו גוטס` },
+          { name: `חבקים` },
+          { name: `דבק אחר` }
+        ]
+      },
+      { name: `בדים\םסרטי`, type: [{ name: `בד טול` }, { name: `סרט סטן` }, { name: `סרט מתנה` }] },
       {
         name: `סטנדים\תקונסתרוקציו`,
         type: [
-          `סטנד שולחן`,
-          `סטנד רצפה`,
-          `קשתות`,
-          `לוח קאפה`,
-          `לוח פי וי סי`,
-          `לוח פרספקט`,
-          `שונות`
+          { name: `סטנד שולחן` },
+          { name: `סטנד רצפה` },
+          { name: `קשתות` },
+          { name: `לוח קאפה` },
+          { name: `לוח פי וי סי` },
+          { name: `לוח פרספקט` },
+          { name: `שונות` }
         ]
       },
       {
         name: `שונות`,
         type: [
-          `אקססוריז`,
-          `ספריי צבע`,
-          `בלון שיין/היי שיין`,
-          `הייפלוט`,
-          `חוט דיג`,
-          `מוט גמיש`,
-          `מדבקות ויניל`,
-          `שונות`
+          { name: `אקססוריז` },
+          { name: `ספריי צבע` },
+          { name: `בלון שיין/היי שיין` },
+          { name: `הייפלוט` },
+          { name: `חוט דיג` },
+          { name: `מוט גמיש` },
+          { name: `מדבקות ויניל` },
+          { name: `שונות` }
         ]
       }
     ]
-  },
+  }
   // {
   //   category: 'שעות עבודה',
   //   subCategory: [{ name: 'עבודה בסיסית' }, { name: 'עבודה אמנותית' }, { name: 'עבודה מורכבת' }]
@@ -141,6 +201,7 @@ const addNewMenu = () => {
 
   if (selectedCategory && selectedSubcategory) {
     const menu = {
+      category: selectedCategory.value,
       subcategory: selectedSubcategory.value,
       quantity: quantity.value,
       price: price.value
@@ -211,7 +272,7 @@ selectedType.value = null
         :value="type"
         class="rose-red-text"
       >
-        {{ type }}
+        {{ type.name }}
       </option>
     </select>
 
@@ -226,7 +287,9 @@ selectedType.value = null
         >
           הסר
         </button>
-        <div class="additional-info">{{ menu.subcategory }} {{ menu.type }}</div>
+        <div class="additional-info">
+          {{ menu.category }} {{ menu.subcategory }} {{ menu.type.name }}
+        </div>
         <div class="input-field">
           <label for="quantity">כמות</label>
           <input
@@ -238,7 +301,7 @@ selectedType.value = null
           />
         </div>
         <div class="input-field">
-          <label for="price">מחיר ליחידה</label>
+          <label for="price">{{ menu.category === 'הליום' ? 'מחיר לקוב' : 'מחיר ליחידה' }}</label>
           <input
             id="price"
             type="number"
@@ -258,7 +321,7 @@ selectedType.value = null
             :value="type"
             class="rose-red-text"
           >
-            {{ type }}
+            {{ type.name }}
           </option>
         </select>
       </div>

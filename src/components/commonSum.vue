@@ -17,11 +17,14 @@ const sumPrice = computed(() => {
   let profitInPrcnt = 0
   if (props.MathMenu) {
     for (let i = 0; i < props.MathMenu.length; i++) {
+      if(!props.MathMenu[i].type.ballonsInCube)
       sum += props.MathMenu[i].price * props.MathMenu[i].quantity
+    else
+    sum += (props.MathMenu[i].price / props.MathMenu[i].type.ballonsInCube) * props.MathMenu[i].quantity
     }
-    if(props.deviationPercentage){
+    if(props.deviationPercentage)
       sum += sum*(props.deviationPercentage/100)
-    }
+    
   }
   if (props.WorkMenu) {
     for (let i = 0; i < props.WorkMenu.length; i++) {
@@ -58,7 +61,7 @@ const sumPrice = computed(() => {
     <h2> {{`חלון סיכום ${props.GenMenu ? " " : "לא"} כולל עלויות כלליות`}} </h2>
     <div class="container">
       <div class="general-sum">
-        {{ ` סך הכל ${props.GenMenu ? " " : "ליחידה"} :₪${sumPrice.sum}` }}
+        {{ ` סך הכל ${props.GenMenu ? " " : "ליחידה"} :₪${sumPrice.sum.toFixed(2)}` }}
       </div>
       <div class="other-profits">
         <div>

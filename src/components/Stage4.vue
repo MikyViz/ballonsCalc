@@ -1,5 +1,5 @@
     <script setup>
-import { ref, reactive, defineEmits } from 'vue'
+import { ref, reactive } from 'vue'
 const selectedType = ref(null)
 const quantity = ref(0)
 const price = ref(0)
