@@ -50,9 +50,41 @@ const updateStylesNum = (newStylesNum) => {
 </template>
 
 <style scoped>
+
+
+
+.wrapper h1 {
+  text-align: center;
+  color: #37474f;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: 'Montserrat-Medium',Arial,sans-serif;
+}
+
 .wrapper {
-  display: flex;
+  padding: 20px;
+  /* display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  width: 100%; */
 }
+
+
+.discount-slider {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.discount-slider input[type='range'] {
+  width: 100%;
+}
+
+
 </style>
