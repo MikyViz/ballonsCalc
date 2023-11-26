@@ -225,7 +225,7 @@ input.custom-input {
 
 @media (max-width: 1024px) {
   .wrapper1 {
-    width: 100%;
+    width: 100% !important;
     }
 
   form.calc-form {
