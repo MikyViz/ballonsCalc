@@ -224,6 +224,10 @@ input.custom-input {
 
 
 @media (max-width: 1024px) {
+  .wrapper1 {
+    width: 100%;
+    }
+
   form.calc-form {
     flex-direction: column;
     padding: 10px 20px;
