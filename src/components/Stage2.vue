@@ -166,19 +166,6 @@ const filters = reactive([
       }
     ]
   }
-  // {
-  //   category: 'שעות עבודה',
-  //   subCategory: [{ name: 'עבודה בסיסית' }, { name: 'עבודה אמנותית' }, { name: 'עבודה מורכבת' }]
-  // },
-  // {
-  //   category: 'עלויות כלליות',
-  //   subCategory: [
-  //     { name: 'זמן עבודה כללי' },
-  //     { name: 'משלוח' },
-  //     { name: 'עובדים' },
-  //     { name: 'שונות' }
-  //   ]
-  // }
 ])
 const selectedCategorySubcategories = computed(() => {
   // selectedCategorySubcategories in return contains array with names of subcategorys
@@ -280,19 +267,6 @@ selectedType.value = null
 
       <div v-for="(menu, index) in selectedMenus" :key="index" class="additional-fields">
         <div class="menu-container">
-          <!-- <button
-            @click="
-              () => {
-                selectedMenus.splice(index, 1)
-              }
-            "
-          >
-            &#215;
-          </button>
-          <div class="additional-info">
-            {{ menu.category }} {{ menu.subcategory }} {{ menu.type.name }}
-          </div> -->
-
           <div class="remove-button-wrapper">
                 <button class="remove-button"
                   @click="
@@ -304,7 +278,7 @@ selectedType.value = null
                   &#215;
                 </button>
                 <div class="additional-info">
-                  {{ menu.category }} {{ menu.subcategory }} {{ menu.type.name }}
+                  {{ menu.category }} {{ menu.subcategory }} {{ selectedTypes[index].name }}
                 </div>
           </div>
 
