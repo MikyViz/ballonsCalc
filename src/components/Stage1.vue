@@ -79,6 +79,10 @@ h2{
   width: 100%;
 }
 
+.percent-slider input[type='range']::-webkit-slider-thumb {
+  background-color: #E81758;
+}
+
 #selectedPercent {
   top: -30px;
   left: 0;

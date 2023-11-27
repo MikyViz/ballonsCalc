@@ -92,7 +92,7 @@ const sumPrice = computed(() => {
   max-width: 800px;
   background-color: #D9D9D9;
   /* margin-bottom: 20px; */
-  border: 2px solid #93916e;
+  border: 2px solid #000;
   border-radius: 10px;
   padding: 20px;
   margin: 20px auto;

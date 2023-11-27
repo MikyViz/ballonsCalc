@@ -198,10 +198,10 @@ const addNewMenu = () => {
     }
     if (selectedType.value) {
       menu.type = selectedType.value
-      selectedTypes.push(selectedType.value)
+      selectedTypes.unshift(selectedType.value)
       selectedType.value = null
     }
-    selectedMenus.push(menu)
+    selectedMenus.unshift(menu)
     quantity.value = 0
     price.value = 0
   }

@@ -19,7 +19,7 @@ const addNewMenu = () => {
       quantity: quantity.value,
       price: price.value
     }
-    selectedMenus.push(menu)
+    selectedMenus.unshift(menu)
     selectedType.value = null
     quantity.value = 0
     price.value = 0
