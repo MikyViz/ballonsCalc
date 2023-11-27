@@ -112,7 +112,7 @@ form.calc-form {
   border-radius: 6px;
   padding: 8px 11px;
   min-height: 44px;
-  background-color: #fffee1;
+  background-color: #D9D9D9;
   border: 2px solid #93916e;
   margin: 20px;
   width: 200px;
@@ -139,7 +139,7 @@ form.calc-form {
   border-radius: 6px;
   padding: 8px 11px;
   min-height: 44px;
-  background-color: #fffee1;
+  background-color: #D9D9D9;
   border: 2px solid #93916e;
   color: #37474f;
   min-width: 200px;
@@ -194,7 +194,7 @@ form.calc-form {
 }
 
 .rose-red-text {
-  color: #ff8888;
+  color: #000;
   }
 
 select.custom-select {

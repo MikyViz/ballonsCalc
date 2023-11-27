@@ -14,14 +14,13 @@ const filters = reactive([
 ])
 
 const addNewMenu = () => {
-  // create info for menu
-
     const menu = {
       type: selectedType.value,
       quantity: quantity.value,
       price: price.value
     }
     selectedMenus.push(menu)
+    selectedType.value = null
     quantity.value = 0
     price.value = 0
 
@@ -36,8 +35,7 @@ emit('update-menu', selectedMenus)
       <div class="strawberry-pink-bg-wrapper">
         <div class="strawberry-pink-bg-select-wrapper">
           <select
-            v-model="selectedType"
-          
+            v-model="selectedType"   
             @change="addNewMenu"
             class="strawberry-pink-bg"
           >
@@ -95,8 +93,9 @@ emit('update-menu', selectedMenus)
 
 
 <style scoped>
-
-
+h2{
+  color: #E81758
+}
 
 
 </style>

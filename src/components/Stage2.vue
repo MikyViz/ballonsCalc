@@ -44,12 +44,12 @@ const filters = reactive([
           { name: `30"-32"` },
           { name: `34"-36"` },
           { name: `38"-40"` },
-          { name: ` '+40"` },
+          { name: ` +40"` },
           { name: `שונות` }
         ]
       },
       {
-        name: `אקווה\בובו`,
+        name: `אקווה/בובו`,   //Исправить на аква слеш бобо
         type: [
           { name: `4"` },
           { name: `14"` },
@@ -94,11 +94,11 @@ const filters = reactive([
           { name: `30"-32"`, ballonsInCube: 17 },
           { name: `34"-36"`, ballonsInCube: 16 },
           { name: `38"-40"`, ballonsInCube: 15 },
-          { name: ` '+40"`, ballonsInCube: 13 }
+          { name: `+40"`, ballonsInCube: 13 }
         ]
       },
       {
-        name: `אקווה\ובוב`,
+        name: `אקווה/בובו`, // tikun
         type: [
           { name: `14"`, ballonsInCube: 110 },
           { name: `18"/20"`, ballonsInCube: 50 },
@@ -133,14 +133,17 @@ const filters = reactive([
         type: [
           { name: `בלון בונד` },
           { name: `סטרצ'י` },
-          { name: `גלו גוטס` },
+          { name: `גלו דוטס` },
           { name: `חבקים` },
           { name: `דבק אחר` }
         ]
       },
-      { name: `בדים\םסרטי`, type: [{ name: `בד טול` }, { name: `סרט סטן` }, { name: `סרט מתנה` }] },
+      { name: `בדים/סרטים`, type: [{
+         name: `בד טול` }, 
+         { name: `סרט סטן` }, // tikun
+         { name: `סרט מתנה` }] },
       {
-        name: `סטנדים\תקונסתרוקציו`,
+        name: `סטנדים/קונסתרוקציות`, // tikun
         type: [
           { name: `סטנד שולחן` },
           { name: `סטנד רצפה` },
@@ -234,10 +237,9 @@ selectedType.value = null
         <select
           v-model="selectedSubcategory"
           v-if="selectedCategory"
-          @change="addNewMenuSub"
           class="strawberry-pink-bg"
         >
-          <option disabled value="" class="rose-red-text">בחר תתקטגוריה</option>
+          <option disabled value="" class="rose-red-text">בחר תת קטגוריה</option>
           <option
             v-for="(subcategory, index) in selectedCategorySubcategories"
             :key="index"
@@ -324,4 +326,7 @@ selectedType.value = null
 
 
 <style scoped>
+h2{
+  color: #E81758
+}
 </style>

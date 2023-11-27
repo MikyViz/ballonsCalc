@@ -22,7 +22,7 @@ const updateWorkMenu = (newMenu) => {
 }
 const updateGeneralCostsMenu = (newMenu) => {
   GenMenu.value = newMenu
-}
+} 
 const updateDeviationPercentage = (newPercentage) => {
   deviationPercentage.value = newPercentage
 }
@@ -34,6 +34,7 @@ const updateStylesNum = (newStylesNum) => {
 <template>
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
+    <!-- <button></button> -->
     <Stage1  @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum"/>
     <Stage2 @update-menu="updateMatherialMenu" />
     <Stage3 @update-menu="updateWorkMenu" />

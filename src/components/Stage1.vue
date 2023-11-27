@@ -5,7 +5,7 @@ const emit = defineEmits(['deviation-percentage', 'styles-num'])
 
 
 // const imgUrl = ref('https://i.pinimg.com/564x/a0/af/fa/a0affa452658c0766686f75dcbfb745f.jpg')
-const imgUrl = ref('../../public/placeholder-300x200.png')
+const imgUrl = ref('../../placeholder-300x200.png')
 const imageRef = ref(null)
 
 const onFileChange = (e) => {
@@ -27,22 +27,6 @@ watch(() => stylesNum.value, (newVal) => {
     
 <template>
   <div class="wrapper1">
-    <!-- <div class="img">
-      <img :src="imgUrl" />
-    </div>
-    <h2>שלב 1 פרטים</h2>
-    <form action="" method="get">
-      <input type="text" name="" id="" placeholder="שם העיצוב" />
-      <input type="text" name="" id="" v-model="stylesNum" placeholder="כמות" />
-      <input type="file" accept="image/*" @change="onFileChange"/>
-    </form>
-    <div class="percent-slider">
-      <label for="percentSlider">אחוז סטייה</label>
-      <input type="range" id="percentSlider" min="0" max="100" step="1" v-model="selectedPercent" />
-      <div id="selectedPercent">{{ selectedPercent }}%</div>
-    </div> -->
-
-
     <div class="calc-img-wrapper">
         <div class="calc-img">
           <img :src="imgUrl" />
@@ -74,6 +58,10 @@ watch(() => stylesNum.value, (newVal) => {
     margin: auto;
 }
 
+h2{
+  color: #E81758
+}
+
 .info {
   height: 50%;
   width: 50%;
@@ -94,8 +82,8 @@ watch(() => stylesNum.value, (newVal) => {
 #selectedPercent {
   top: -30px;
   left: 0;
-  background-color: #fcea92;
-  border: 2px solid #fcea92;
+  /* background-color: #fcea92; */
+  /* border: 2px solid #fcea92; */
 }
 
 

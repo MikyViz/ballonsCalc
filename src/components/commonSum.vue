@@ -90,7 +90,7 @@ const sumPrice = computed(() => {
 .sum-wrapper {
   width: 100%;
   max-width: 800px;
-  background-color: #fffee1;
+  background-color: #D9D9D9;
   /* margin-bottom: 20px; */
   border: 2px solid #93916e;
   border-radius: 10px;
@@ -103,7 +103,8 @@ const sumPrice = computed(() => {
   display: flex;
   justify-content: center;
   text-align: center;
-  color: #37474f;
+  /* color: #37474f; */
+  color: #000;
   /* font-weight: bold; */
   /* margin-top: 20px; */
   font-family: 'Montserrat-Medium',Arial,sans-serif;
@@ -126,6 +127,7 @@ const sumPrice = computed(() => {
 .general-sum {
   font-size: 26px;
   font-weight: bold;
+  color: #E81758;
 }
 
 .other-profits-wrapper {
