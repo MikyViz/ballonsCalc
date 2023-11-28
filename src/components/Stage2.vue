@@ -143,7 +143,7 @@ const filters = reactive([
          { name: `סרט סטן` }, // tikun
          { name: `סרט מתנה` }] },
       {
-        name: `סטנדים/קונסתרוקציות`, // tikun
+        name: `סטנדים/קונסטרוקציות`, // tikun
         type: [
           { name: `סטנד שולחן` },
           { name: `סטנד רצפה` },
@@ -295,7 +295,7 @@ selectedType.value = null
             />
           </div>
           <div class="input-field">
-            <label for="price">מחיר ליחידה</label>
+            <label for="price">{{menu.category !== 'הליום' ? `מחיר ליחידה` : 'מחיר לקוב'}}</label>
             <input
               id="price"
               type="number"

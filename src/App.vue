@@ -1,5 +1,5 @@
 <script setup>
-import { ref, toRefs } from 'vue'
+import { ref, toRefs, onMounted, onBeforeUnmount } from 'vue'
 import Stage1 from './components/Stage1.vue'
 // import Stage2pseudoDropDown from './components/Stage2pseudoDropDown.vue'
 import Stage2 from './components/Stage2.vue'
@@ -13,6 +13,20 @@ const GenMenu = ref(null)
 const discountPercent = ref(0)
 const deviationPercentage = ref(10)
 const stylesNum = ref(null)
+
+    const screenWidth = ref(window.innerWidth);
+
+    const handleResize = () => {
+      screenWidth.value = window.innerWidth;
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', handleResize);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', handleResize);
+    });
 
 const updateMatherialMenu = (newMenu) => {
   MathMenu.value = newMenu
@@ -35,8 +49,8 @@ const updateStylesNum = (newStylesNum) => {
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
     <a
-      href="http://https://bsch.co.il/uncategorized-en/%d7%9e%d7%97%d7%a9%d7%91%d7%95%d7%9f-%d7%aa%d7%9e%d7%97%d7%95%d7%a8/"
-      >להסבר על המחשבון לחץ כאן</a
+      href="https://bsch.co.il/maslulim/?mepr-unauth-page=17697&redirect_to=%2Funcategorized-en%2F%25d7%259e%25d7%2597%25d7%25a9%25d7%2591%25d7%2595%25d7%259f-%25d7%25aa%25d7%259e%25d7%2597%25d7%2595%25d7%25a8%2F"
+      >{{screenWidth >= 1024 ? 'להסבר על המחשבון לחץ כאן' : "¿?"}}</a
     >
     <Stage1 @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum" />
     <Stage2 @update-menu="updateMatherialMenu" />
@@ -92,13 +106,21 @@ a {
   border-radius: 30px;
   font-weight: bolder;
   transition: transform 0.2s ease-in-out;
-  position: absolute;
+  position: fixed; /* Добавлено свойство position */
   top: 13px;
   left: 14px;
+  z-index: 1000; /* Вы можете настроить z-index в зависимости от вашего дизайна */
 }
 
 a:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 800px) {
+  a {
+  padding: 15px 10px;
+  font-weight: 500;
+}
 }
 
 .wrapper {
@@ -123,4 +145,5 @@ a:hover {
 .discount-slider input[type='range'] {
   width: 100%;
 }
+
 </style>
