@@ -48,10 +48,12 @@ const updateStylesNum = (newStylesNum) => {
 <template>
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
-    <a
-      href="https://bsch.co.il/maslulim/?mepr-unauth-page=17697&redirect_to=%2Funcategorized-en%2F%25d7%259e%25d7%2597%25d7%25a9%25d7%2591%25d7%2595%25d7%259f-%25d7%25aa%25d7%259e%25d7%2597%25d7%2595%25d7%25a8%2F"
-      >{{screenWidth >= 1024 ? 'להסבר על המחשבון לחץ כאן' : "¿?"}}</a
-    >
+    <a href="https://bsch.co.il/maslulim/?mepr-unauth-page=17697&redirect_to=%2Funcategorized-en%2F%25d7%259e%25d7%2597%25d7%25a9%25d7%2591%25d7%2595%25d7%259f-%25d7%25aa%25d7%259e%25d7%2597%25d7%2595%25d7%25a8%2F"
+   >
+   <span v-if="screenWidth >= 1024" class="help">להסבר על המחשבון לחץ כאן</span>
+   <span v-if="screenWidth < 1024" class="material-symbols-outlined">help</span>
+</a>
+
     <Stage1 @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum" />
     <Stage2 @update-menu="updateMatherialMenu" />
     <Stage3 @update-menu="updateWorkMenu" />
@@ -89,6 +91,14 @@ const updateStylesNum = (newStylesNum) => {
 </template>
 
 <style scoped>
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 .wrapper h1 {
   text-align: center;
   color: #37474f;
@@ -104,24 +114,22 @@ a {
   background-color: #e81758;
   color: #000;
   border-radius: 30px;
-  font-weight: bolder;
+  
   transition: transform 0.2s ease-in-out;
-  position: fixed; /* Добавлено свойство position */
+  position: fixed;
   top: 13px;
   left: 14px;
-  z-index: 1000; /* Вы можете настроить z-index в зависимости от вашего дизайна */
+  z-index: 1000; 
 }
 
 a:hover {
   transform: scale(1.1);
 }
 
-@media (max-width: 800px) {
-  a {
-  padding: 15px 10px;
-  font-weight: 500;
+.help{
+  font-weight: bolder;
 }
-}
+
 
 .wrapper {
   padding: 20px;

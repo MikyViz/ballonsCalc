@@ -46,6 +46,7 @@ const sumPrice = computed(() => {
     Worksum = Worksum*props.stylesNum;
   }
   sum += Worksum
+  sum = sum - (sum*(props.discountPercent/100))
   profitInPrcnt = (Worksum / sum) * 100
   calcObj.sum = sum
   calcObj.Worksum = Worksum
