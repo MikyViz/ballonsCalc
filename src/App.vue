@@ -49,9 +49,9 @@ const updateStylesNum = (newStylesNum) => {
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
     <a href="https://bsch.co.il/maslulim/?mepr-unauth-page=17697&redirect_to=%2Funcategorized-en%2F%25d7%259e%25d7%2597%25d7%25a9%25d7%2591%25d7%2595%25d7%259f-%25d7%25aa%25d7%259e%25d7%2597%25d7%2595%25d7%25a8%2F"
-   >
+   target="_blank" >
    <span v-if="screenWidth >= 1024" class="help">להסבר על המחשבון לחץ כאן</span>
-   <span v-if="screenWidth < 1024" class="material-symbols-outlined">help</span>
+   <span v-if="screenWidth < 1024" class="material-symbols-outlined">help<span>לעזרה</span> </span>
 </a>
 
     <Stage1 @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum" />
@@ -93,11 +93,19 @@ const updateStylesNum = (newStylesNum) => {
 <style scoped>
 
 .material-symbols-outlined {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
   'opsz' 24
+}
+
+.material-symbols-outlined span{
+  font-family: sans-serif;
+  font-size: 20px;
 }
 .wrapper h1 {
   text-align: center;

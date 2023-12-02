@@ -304,7 +304,7 @@ selectedType.value = null
               class="strawberry-pink-bg"
             />
           </div>
-          <select
+          <!-- <select                               В ГЕЛИЕ ПРИ ИЗМЕНЕНИИ ТИПА, НЕ МЕНЯЕТСЯ  BALLONSINCUBE
             v-model="selectedTypes[index]"
             @change="(event) => (menu.type = event.target.value)"
           >
@@ -317,7 +317,7 @@ selectedType.value = null
             >
               {{ type.name }}
             </option>
-          </select>
+          </select> -->
         </div>
       </div>
     </div>
