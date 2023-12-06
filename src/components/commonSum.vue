@@ -67,7 +67,6 @@ const sumPrice = computed(() => {
 
 sum = Worksum + expenses;
 profitInPrcnt = (Worksum/sum)*100;
-profitInNis = Worksum - expenses;
 
 // sumForPrcntCalc = sum * (props.discountPercent/100);
 sumForPrcntCalc = sum * (1 - props.discountPercent/100);
@@ -78,6 +77,7 @@ profitAfterDiscountInPrcnt = (((sumForPrcntCalc-expenses))/sumForPrcntCalc) * 10
 
 profitAfterDiscountInNis = sumForPrcntCalc - expenses;
 
+profitInNis = sumForPrcntCalc - expenses;
 
 // ((totalPrice.value - materials.value - hourlyRate.value) * (1 - discount.value / 100)) / totalPrice.value
 //       ) * 100;
