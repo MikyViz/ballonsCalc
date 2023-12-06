@@ -206,13 +206,18 @@ const addNewMenu = () => {
     price.value = 0
   }
 }
+
+const updateType = (menu, newTypeName, index) => {
+  const newType = selectedSubcategoryTypes.value.find(type => type.name === newTypeName);
+  if (newType) {
+    // Обновляем тип в selectedMenus
+    selectedMenus[index].type = { ...newType };
+    // Обновляем selectedTypes, чтобы отображение в шаблоне также изменилось
+    selectedTypes.splice(index, 1, { ...newType });
+  }
+}
 emit('update-menu', selectedMenus)
 
-// const addNewMenuSub = () => {
-//   if (!selectedSubcategoryTypes.value) {
-//     addNewMenu()
-//   }
-// }
 
 selectedType.value = null
 </script>
@@ -304,9 +309,10 @@ selectedType.value = null
               class="strawberry-pink-bg"
             />
           </div>
-          <!-- <select                               В ГЕЛИЕ ПРИ ИЗМЕНЕНИИ ТИПА, НЕ МЕНЯЕТСЯ  BALLONSINCUBE
+          <!-- Здесь блядь эта ебаная ошибка!!! -->
+          <select                               
             v-model="selectedTypes[index]"
-            @change="(event) => (menu.type = event.target.value)"
+            @change="(event) => updateType(menu, event.target.value, index)"
           >
             <option disabled value="" class="rose-red-text">שנה סוג</option>
             <option
@@ -317,7 +323,7 @@ selectedType.value = null
             >
               {{ type.name }}
             </option>
-          </select> -->
+          </select>
         </div>
       </div>
     </div>

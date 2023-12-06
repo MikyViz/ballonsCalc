@@ -11,19 +11,24 @@ const props = defineProps({
   summaryCalc: Boolean
 })
 const sumPrice = computed(() => {
-  let sum = 0
-  let Worksum = 0
-  const calcObj = {}
-  let profitInPrcnt = 0
+  let sum = 0;
+  let Worksum = 0;
+  const calcObj = {};
+  let profitInPrcnt = 0;
+  let profitInNis = 0;
+  let expenses = 0;
+  let sumForPrcntCalc = 0;
+  let profitAfterDiscountInPrcnt = 0;
+  let profitAfterDiscountInNis = 0;
   if (props.MathMenu) {
     for (let i = 0; i < props.MathMenu.length; i++) {
       if(!props.MathMenu[i].type.ballonsInCube)
-      sum += props.MathMenu[i].price * props.MathMenu[i].quantity
+      expenses += props.MathMenu[i].price * props.MathMenu[i].quantity
     else
-    sum += (props.MathMenu[i].price / props.MathMenu[i].type.ballonsInCube) * props.MathMenu[i].quantity
+    expenses += (props.MathMenu[i].price / props.MathMenu[i].type.ballonsInCube) * props.MathMenu[i].quantity
     }
     if(props.deviationPercentage)
-      sum += sum*(props.deviationPercentage/100)
+      expenses += expenses*(props.deviationPercentage/100)
     
   }
   if (props.WorkMenu) {
@@ -34,25 +39,60 @@ const sumPrice = computed(() => {
   if (props.GenMenu) {
     for (let i = 0; i < props.GenMenu.length; i++) {
       if (props.GenMenu[i].type === 'זמן עבודה כללי') {
-        sum += props.GenMenu[i].price * props.GenMenu[i].quantity;
+        expenses += props.GenMenu[i].price * props.GenMenu[i].quantity;
       } else {
-        sum += (props.GenMenu[i].price * props.GenMenu[i].quantity) + ((props.GenMenu[i].price * props.GenMenu[i].quantity)*(props.deviationPercentage/100))
+        expenses += (props.GenMenu[i].price * props.GenMenu[i].quantity) + ((props.GenMenu[i].price * props.GenMenu[i].quantity)*(props.deviationPercentage/100))
       }
       
     }
   }
   if (props.stylesNum){
-    sum = sum*props.stylesNum;
+    expenses = expenses*props.stylesNum;
     Worksum = Worksum*props.stylesNum;
   }
-  sum += Worksum
-  sum = sum - (sum*(props.discountPercent/100))
-  profitInPrcnt = (Worksum / sum) * 100
-  calcObj.sum = sum
-  calcObj.Worksum = Worksum
-  calcObj.profitInPrcnt = profitInPrcnt
-  calcObj.profitAfterDiscountInNis = Worksum - (sum * (props.discountPercent/100))
-  calcObj.profitAfterDiscountInPrcnt = (calcObj.profitAfterDiscountInNis / sum) * 100
+  
+  // let expenses = sum
+  // sum += Worksum
+  
+  // sum = sum - (sum*(props.discountPercent/100))
+  // profitInPrcnt = (Worksum / sum) * 100
+  // calcObj.sum = sum
+  // calcObj.Worksum = Worksum
+  // calcObj.profitInPrcnt = profitInPrcnt
+  // calcObj.profitAfterDiscountInNis = Worksum - (sum * (props.discountPercent/100))
+  // // calcObj.profitAfterDiscountInNis = Worksum - sum
+  // calcObj.profitAfterDiscountInPrcnt = (calcObj.profitAfterDiscountInNis / sum) * 100
+
+
+
+sum = Worksum + expenses;
+profitInPrcnt = (Worksum/sum)*100;
+profitInNis = Worksum - expenses;
+
+// sumForPrcntCalc = sum * (props.discountPercent/100);
+sumForPrcntCalc = sum * (1 - props.discountPercent/100);
+
+// profitAfterDiscountInPrcnt = (sumForPrcntCalc-expenses)/sumForPrcntCalc;
+
+profitAfterDiscountInPrcnt = (((sumForPrcntCalc-expenses))/sumForPrcntCalc) * 100;
+
+profitAfterDiscountInNis = sumForPrcntCalc - expenses;
+
+
+// ((totalPrice.value - materials.value - hourlyRate.value) * (1 - discount.value / 100)) / totalPrice.value
+//       ) * 100;
+
+
+
+calcObj.expenses = expenses;
+calcObj.Worksum = Worksum;
+calcObj.sum = sum;
+calcObj.profitInPrcnt = profitInPrcnt;
+calcObj.profitInNis = profitInNis;
+calcObj.sumForPrcntCalc = sumForPrcntCalc;
+calcObj.profitAfterDiscountInPrcnt = profitAfterDiscountInPrcnt;
+calcObj.profitAfterDiscountInNis = profitAfterDiscountInNis;
+
   return calcObj
 })
 </script>
@@ -62,7 +102,7 @@ const sumPrice = computed(() => {
     <h2> {{`חלון סיכום ${props.GenMenu ? " " : "לא"} כולל עלויות כלליות`}} </h2>
     <div class="container">
       <div class="general-sum">
-        {{ ` סך הכל ${props.GenMenu ? " " : "ליחידה"} :₪${sumPrice.sum.toFixed(2)}` }}
+        {{ ` סך הכל ${props.GenMenu ? " " : "ליחידה"} :₪${sumPrice.sumForPrcntCalc.toFixed(2)}` }}
       </div>
       <div class="other-profits-wrapper">
           <div class="other-profits">
@@ -75,7 +115,7 @@ const sumPrice = computed(() => {
           </div>
           <div class="other-profits">
             <div>
-              {{ `רווח בש"ח: ₪${sumPrice.Worksum ? sumPrice.Worksum : 0} ` }}
+              {{ `רווח בש"ח: ₪${sumPrice.profitInNis ? sumPrice.profitInNis : 0} ` }}
             </div>
             <div>
               {{ ` רווח בש"ח אחרי הנחה: ₪${sumPrice.profitAfterDiscountInNis ? sumPrice.profitAfterDiscountInNis.toFixed(2) : 0}` }}
@@ -118,10 +158,8 @@ const sumPrice = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* flex-direction: row-reverse; */
   gap: 20px;
   border-radius: 10px;
-  /* padding: 20px; */
   direction: rtl;
 }
 
