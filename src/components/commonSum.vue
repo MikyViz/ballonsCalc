@@ -51,37 +51,17 @@ const sumPrice = computed(() => {
     Worksum = Worksum*props.stylesNum;
   }
   
-  // let expenses = sum
-  // sum += Worksum
-  
-  // sum = sum - (sum*(props.discountPercent/100))
-  // profitInPrcnt = (Worksum / sum) * 100
-  // calcObj.sum = sum
-  // calcObj.Worksum = Worksum
-  // calcObj.profitInPrcnt = profitInPrcnt
-  // calcObj.profitAfterDiscountInNis = Worksum - (sum * (props.discountPercent/100))
-  // // calcObj.profitAfterDiscountInNis = Worksum - sum
-  // calcObj.profitAfterDiscountInPrcnt = (calcObj.profitAfterDiscountInNis / sum) * 100
-
-
 
 sum = Worksum + expenses;
 profitInPrcnt = (Worksum/sum)*100;
 
-// sumForPrcntCalc = sum * (props.discountPercent/100);
 sumForPrcntCalc = sum * (1 - props.discountPercent/100);
-
-// profitAfterDiscountInPrcnt = (sumForPrcntCalc-expenses)/sumForPrcntCalc;
 
 profitAfterDiscountInPrcnt = (((sumForPrcntCalc-expenses))/sumForPrcntCalc) * 100;
 
 profitAfterDiscountInNis = sumForPrcntCalc - expenses;
 
 profitInNis = sumForPrcntCalc - expenses;
-
-// ((totalPrice.value - materials.value - hourlyRate.value) * (1 - discount.value / 100)) / totalPrice.value
-//       ) * 100;
-
 
 
 calcObj.expenses = expenses;
@@ -144,17 +124,12 @@ calcObj.profitAfterDiscountInNis = profitAfterDiscountInNis;
   display: flex;
   justify-content: center;
   text-align: center;
-  /* color: #37474f; */
   color: #000;
-  /* font-weight: bold; */
-  /* margin-top: 20px; */
   font-family: 'Montserrat-Medium',Arial,sans-serif;
-  /* border: 1px 0 0 0 dotted grey; */
 }
 
 .container {
   width: 100%;
-  /* background-color: #ff8888; */
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -310,7 +310,7 @@ selectedType.value = null
             />
           </div>
           <!-- Здесь блядь эта ебаная ошибка!!! -->
-          <select                               
+          <!-- <select                               
             v-model="selectedTypes[index]"
             @change="(event) => updateType(menu, event.target.value, index)"
           >
@@ -323,7 +323,7 @@ selectedType.value = null
             >
               {{ type.name }}
             </option>
-          </select>
+          </select> -->
         </div>
       </div>
     </div>

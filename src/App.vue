@@ -14,20 +14,6 @@ const discountPercent = ref(0)
 const deviationPercentage = ref(10)
 const stylesNum = ref(null)
 
-    const screenWidth = ref(window.innerWidth);
-
-    const handleResize = () => {
-      screenWidth.value = window.innerWidth;
-    };
-
-    onMounted(() => {
-      window.addEventListener('resize', handleResize);
-    });
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('resize', handleResize);
-    });
-
 const updateMatherialMenu = (newMenu) => {
   MathMenu.value = newMenu
 }
@@ -48,11 +34,6 @@ const updateStylesNum = (newStylesNum) => {
 <template>
   <div class="wrapper">
     <h1>מחשבון תמחור</h1>
-    <a href="https://bsch.co.il/maslulim/?mepr-unauth-page=17697&redirect_to=%2Funcategorized-en%2F%25d7%259e%25d7%2597%25d7%25a9%25d7%2591%25d7%2595%25d7%259f-%25d7%25aa%25d7%259e%25d7%2597%25d7%2595%25d7%25a8%2F"
-   target="_blank" >
-   <span v-if="screenWidth >= 1024" class="help">להסבר על המחשבון לחץ כאן</span>
-   <span v-if="screenWidth < 1024" class="material-symbols-outlined">help<span>לעזרה</span> </span>
-</a>
 
     <Stage1 @deviation-percentage="updateDeviationPercentage" @styles-num="updateStylesNum" />
     <Stage2 @update-menu="updateMatherialMenu" />
@@ -87,6 +68,10 @@ const updateStylesNum = (newStylesNum) => {
       />
       <div id="discountPercent">{{ discountPercent }}%</div>
     </div>
+    <a href="https://bsch.co.il/uncategorized-en/%d7%9e%d7%97%d7%a9%d7%91%d7%95%d7%9f-%d7%aa%d7%9e%d7%97%d7%95%d7%a8/"
+   target="_blank" >
+   להסבר על המחשבון לחץ כאן
+</a>
   </div>
 </template>
 
@@ -116,36 +101,9 @@ const updateStylesNum = (newStylesNum) => {
   font-family: 'Montserrat-Medium', Arial, sans-serif;
 }
 
-a {
-  display: inline-block;
-  padding: 20px 15px;
-  background-color: #e81758;
-  color: #000;
-  border-radius: 30px;
-  
-  transition: transform 0.2s ease-in-out;
-  position: fixed;
-  top: 13px;
-  left: 14px;
-  z-index: 1000; 
-}
-
-a:hover {
-  transform: scale(1.1);
-}
-
-.help{
-  font-weight: bolder;
-}
-
 
 .wrapper {
   padding: 20px;
-  /* display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%; */
 }
 
 .discount-slider {
@@ -162,4 +120,30 @@ a:hover {
   width: 100%;
 }
 
+a {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+
+  padding: 20px 15px;
+  background-color: #e81758;
+  color: #000;
+  border-radius: 30px;  
+  transition: transform 0.2s ease-in-out;
+}
+
+
+a:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 376px) {
+  a{
+    font-weight: 400;
+    padding: 15px 10px;
+  }
+}
 </style>
