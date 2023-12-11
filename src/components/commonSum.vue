@@ -61,7 +61,7 @@ profitAfterDiscountInPrcnt = (((sumForPrcntCalc-expenses))/sumForPrcntCalc) * 10
 
 profitAfterDiscountInNis = sumForPrcntCalc - expenses;
 
-profitInNis = sumForPrcntCalc - expenses;
+profitInNis = sum - expenses;
 
 
 calcObj.expenses = expenses;
