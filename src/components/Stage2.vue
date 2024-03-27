@@ -1,5 +1,5 @@
     <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 const selectedCategory = ref(null)
 const selectedSubcategory = ref(null)
 const selectedType = ref(null)
@@ -9,6 +9,26 @@ const price = ref(0)
 const selectedMenus = reactive([])
 
 const emit = defineEmits(['update-menu'])
+
+// onMounted(() => {
+//   // Ваша функция здесь
+//   const getData = async () => {
+//     try {
+//       const requestOptions = {
+//         method: 'GET',
+//         redirect: 'follow'
+//       }
+
+//       const response = await fetch('http://localhost:3000/data/getData/', requestOptions)
+//       const data = await response.text()
+//       console.log(data)
+//       return data
+//     } catch (error) {
+//       console.log('Crap...💩', error)
+//     }
+//   }
+//   getData();
+// })
 
 const filters = reactive([
   {
@@ -49,7 +69,7 @@ const filters = reactive([
         ]
       },
       {
-        name: `אקווה/בובו`,   //Исправить на аква слеш бобо
+        name: `אקווה/בובו`,
         type: [
           { name: `4"` },
           { name: `14"` },
@@ -98,7 +118,7 @@ const filters = reactive([
         ]
       },
       {
-        name: `אקווה/בובו`, // tikun
+        name: `אקווה/בובו`,
         type: [
           { name: `14"`, ballonsInCube: 110 },
           { name: `18"/20"`, ballonsInCube: 50 },
@@ -138,12 +158,18 @@ const filters = reactive([
           { name: `דבק אחר` }
         ]
       },
-      { name: `בדים/סרטים`, type: [{
-         name: `בד טול` }, 
-         { name: `סרט סטן` }, // tikun
-         { name: `סרט מתנה` }] },
       {
-        name: `סטנדים/קונסטרוקציות`, // tikun
+        name: `בדים/סרטים`,
+        type: [
+          {
+            name: `בד טול`
+          },
+          { name: `סרט סטן` },
+          { name: `סרט מתנה` }
+        ]
+      },
+      {
+        name: `סטנדים/קונסטרוקציות`,
         type: [
           { name: `סטנד שולחן` },
           { name: `סטנד רצפה` },
@@ -208,16 +234,15 @@ const addNewMenu = () => {
 }
 
 const updateType = (menu, newTypeName, index) => {
-  const newType = selectedSubcategoryTypes.value.find(type => type.name === newTypeName);
+  const newType = selectedSubcategoryTypes.value.find((type) => type.name === newTypeName)
   if (newType) {
     // Обновляем тип в selectedMenus
-    selectedMenus[index].type = { ...newType };
+    selectedMenus[index].type = { ...newType }
     // Обновляем selectedTypes, чтобы отображение в шаблоне также изменилось
-    selectedTypes.splice(index, 1, { ...newType });
+    selectedTypes.splice(index, 1, { ...newType })
   }
 }
 emit('update-menu', selectedMenus)
-
 
 selectedType.value = null
 </script>
@@ -239,11 +264,7 @@ selectedType.value = null
           </option>
         </select>
 
-        <select
-          v-model="selectedSubcategory"
-          v-if="selectedCategory"
-          class="strawberry-pink-bg"
-        >
+        <select v-model="selectedSubcategory" v-if="selectedCategory" class="strawberry-pink-bg">
           <option disabled value="" class="rose-red-text">בחר תת קטגוריה</option>
           <option
             v-for="(subcategory, index) in selectedCategorySubcategories"
@@ -275,18 +296,19 @@ selectedType.value = null
       <div v-for="(menu, index) in selectedMenus" :key="index" class="additional-fields">
         <div class="menu-container">
           <div class="remove-button-wrapper">
-                <button class="remove-button"
-                  @click="
-                    () => {
-                      selectedMenus.splice(index, 1)
-                    }
-                  "
-                >
-                  &#215;
-                </button>
-                <div class="additional-info">
-                  {{ menu.category }} {{ menu.subcategory }} {{ selectedTypes[index].name }}
-                </div>
+            <button
+              class="remove-button"
+              @click="
+                () => {
+                  selectedMenus.splice(index, 1)
+                }
+              "
+            >
+              &#215;
+            </button>
+            <div class="additional-info">
+              {{ menu.category }} {{ menu.subcategory }} {{ selectedTypes[index].name }}
+            </div>
           </div>
 
           <div class="input-field">
@@ -300,7 +322,7 @@ selectedType.value = null
             />
           </div>
           <div class="input-field">
-            <label for="price">{{menu.category !== 'הליום' ? `מחיר ליחידה` : 'מחיר לקוב'}}</label>
+            <label for="price">{{ menu.category !== 'הליום' ? `מחיר ליחידה` : 'מחיר לקוב' }}</label>
             <input
               id="price"
               type="number"
@@ -332,7 +354,7 @@ selectedType.value = null
 
 
 <style scoped>
-h2{
-  color: #E81758
+h2 {
+  color: #e81758;
 }
 </style>

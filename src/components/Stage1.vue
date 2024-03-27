@@ -1,12 +1,12 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const emit = defineEmits(['deviation-percentage', 'styles-num'])
+const emit = defineEmits(['deviation-percentage', 'styles-num', 'project-name', 'img-url'])
 
 
-// const imgUrl = ref('https://i.pinimg.com/564x/a0/af/fa/a0affa452658c0766686f75dcbfb745f.jpg')
 const imgUrl = ref('../../placeholder-300x200.png')
-const imageRef = ref(null)
+// const imageRef = ref(null)
+const projectName = ref(null)
 
 const onFileChange = (e) => {
   const file = e.target.files[0]
@@ -23,6 +23,14 @@ watch(() => selectedPercent.value, (newVal) => {
 watch(() => stylesNum.value, (newVal) => {
   emit('styles-num', newVal);
 });
+
+watch(() => projectName.value, (newVal) => {
+  emit('project-name', newVal);
+});
+
+watch(() => imgUrl.value, (newVal) => {
+  emit('img-url', newVal);
+});
 </script>
     
 <template>
@@ -36,7 +44,7 @@ watch(() => stylesNum.value, (newVal) => {
         <div class="calc-stage calc-stage1">
             <h2>שלב 1 פרטים</h2>
             <form class="calc-form" method="get">
-              <input type="text" name="" id="" placeholder="שם העיצוב" />
+              <input type="text" name="" id="" v-model="projectName" placeholder="שם העיצוב" />
               <input type="text" name="" id="" v-model="stylesNum" placeholder="כמות" />
               <input type="file" accept="image/*" @change="onFileChange"/>
             </form>

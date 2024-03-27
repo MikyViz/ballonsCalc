@@ -36,20 +36,26 @@ const sumPrice = computed(() => {
       Worksum += props.WorkMenu[i].price * props.WorkMenu[i].quantity ;
     }
   }
+  
+  if (props.stylesNum){
+    expenses = expenses*props.stylesNum;
+    Worksum = Worksum*props.stylesNum;
+  }
+
   if (props.GenMenu) {
     for (let i = 0; i < props.GenMenu.length; i++) {
       if (props.GenMenu[i].type === 'זמן עבודה כללי') {
-        expenses += props.GenMenu[i].price * props.GenMenu[i].quantity;
+        Worksum += props.GenMenu[i].price * props.GenMenu[i].quantity;
       } else {
         expenses += (props.GenMenu[i].price * props.GenMenu[i].quantity) + ((props.GenMenu[i].price * props.GenMenu[i].quantity)*(props.deviationPercentage/100))
       }
       
     }
   }
-  if (props.stylesNum){
-    expenses = expenses*props.stylesNum;
-    Worksum = Worksum*props.stylesNum;
-  }
+  // if (props.stylesNum){
+  //   expenses = expenses*props.stylesNum;
+  //   Worksum = Worksum*props.stylesNum;
+  // }
   
 
 sum = Worksum + expenses;
